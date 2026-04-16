@@ -3,6 +3,8 @@ const cors = require('cors');
 const sequelize = require('./config/db');
 const authRoutes = require('./routes/auth.routes');
 
+require('./models/user.model');
+
 const app = express();
 
 app.use(cors());

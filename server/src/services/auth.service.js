@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
-const {User} = require('../models/user.model');
+const User = require('../models/user.model');
 
 const signup = async (username, password) => {
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -10,7 +10,11 @@ const signup = async (username, password) => {
         password: hashedPassword
     });
 
-    return user;
+    return {
+        id: user.id,
+        username: user.username,
+        role: user.role,
+    };
 }
 
 const login = async (username, password) => {
