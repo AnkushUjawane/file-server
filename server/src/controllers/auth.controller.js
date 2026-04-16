@@ -1,6 +1,6 @@
 const authService = require('../services/auth.service');
 
-const signup = async (req, res) => {
+const signup = async (req, res, next) => {
     try{
         const {username, password} = req.body;
         const user = await authService.signup(username, password);
@@ -19,14 +19,11 @@ const signup = async (req, res) => {
             });
         }
 
-        res.status(400).json({
-            success: false,
-            message: err.message,
-        });
+        next(err);
     }
 };
 
-const login = async (req, res) => {
+const login = async (req, res, next) => {
     try{
         const {username, password} = req.body;
         const result = await authService.login(username, password);
@@ -37,11 +34,7 @@ const login = async (req, res) => {
             data: result,
         });
     } catch(err){
-        console.error(err);
-        res.status(401).json({
-            success: false,
-            message: err.message,
-        });
+        next(err);
     }
 };
 
