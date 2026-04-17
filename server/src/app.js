@@ -2,8 +2,9 @@ const express = require('express');
 const cors = require('cors');
 const sequelize = require('./config/db');
 const authRoutes = require('./routes/auth.routes');
-const authMiddleware = require("./middleware/auth.middleware");
-const errorMiddleware = require("./middleware/error.middleware");
+const authMiddleware = require('./middleware/auth.middleware');
+const errorMiddleware = require('./middleware/error.middleware');
+const fileRoutes = require('./routes/file.routes');
 
 require('./models/user.model');
 
@@ -12,6 +13,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
+app.use("/api/files", fileRoutes);
 app.use(errorMiddleware);
 
 sequelize.sync()
