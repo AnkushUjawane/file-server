@@ -1,5 +1,5 @@
 const multer = require('multer');
-const path = require("path");
+const path = require('path');
 const fs = require("fs");
 const File = require('../models/file.model');
 
@@ -35,8 +35,42 @@ const getFiles = async (userId) => {
     return await File.findAll({where: {userId}});
 };
 
+const getFilebyId = async (id, userId) => {
+    const file = await File.findOne({where: {id, userId}});
+    if(!file){
+        throw new Error("File not found");
+    }
+    return file;
+}
+
+const deleteFile = async (id, userId) => {
+    const file = await getFilebyId(id, userId);
+
+    fs.unlinkSync(file.path);
+    await file.destroy();
+
+    return true;
+}
+
+const renameFile = async (id, userId, newName) => {
+    const file = await getFilebyId(id, userId);
+
+    const newPath = path.join("uploads", newName);
+
+    fs.renameSync(file.path, newPath);
+
+    file.filename = newName;
+    file.path = newPath;
+    await file.save();
+
+    return file;
+}
+
 module.exports = {
     upload,
     saveFile,
     getFiles,
+    getFilebyId,
+    deleteFile,
+    renameFile,
 };
