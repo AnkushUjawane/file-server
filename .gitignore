@@ -4,3 +4,4 @@ database.sqlite
 uploads/
 server/src/test.txt
 .vscode/
+server/logs/

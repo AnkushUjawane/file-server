@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  backend:
+    build: ./server
+    container_name: file-server-backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./server:/app
+    env_file:
+      - ./server/.env
