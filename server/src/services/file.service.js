@@ -18,7 +18,17 @@ const storage = multer.diskStorage({
     },
 });
 
-const upload = multer({storage});
+const upload = multer({
+    storage,
+    limits: {fileSize: 10 * 1024 * 1024},
+    fileFilter: (req, file, cb) => {
+        const allowed = ["image/jpeg", "image/png", "application/pdf"];
+        if(!allowed.includes(file.mimetype)){
+            return cb(new Error("Invalid File Type"));
+        }
+        cb(null, true);
+    },
+});
 
 const saveFile = async(file, userId) => {
     const saved = await File.create({
