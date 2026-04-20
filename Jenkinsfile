@@ -2,11 +2,11 @@ pipeline{
     agent any
     
     stages {
-        stage('Install Dependencies'){
-            steps{
-                sh 'cd server && npm install'
-            }
-        }
+        // stage('Install Dependencies'){
+        //     steps{
+        //         sh 'cd server && npm install'
+        //     }
+        // }
 
         stage('Build Docker Image'){
             steps{
