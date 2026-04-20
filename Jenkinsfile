@@ -17,7 +17,7 @@ pipeline{
         stage('Build Docker Image'){
             steps{
                 sh '''
-                docker build -t file-server:${BUILD_NUMBER} ./server
+                docker build --no-cahe -t file-server:${BUILD_NUMBER} ./server
                 docker tag $IMAGE_NAME:${BUILD_NUMBER} $IMAGE_NAME:latest
                 '''
             }
