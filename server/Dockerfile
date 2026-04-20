@@ -2,16 +2,13 @@ FROM node:18-bullseye
 
 WORKDIR /app
 
-# Copy package files first (for caching)
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install
+RUN npm cache clean --force && \
+    npm install --no-audit --no-fund --legacy-peer-deps
 
-# Copy rest of code
 COPY . .
 
-# Create required folders
 RUN mkdir -p uploads logs
 
 EXPOSE 5000
