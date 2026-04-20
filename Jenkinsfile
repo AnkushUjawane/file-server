@@ -18,7 +18,7 @@ pipeline{
             steps{
                 sh '''
                 docker build -t file-server:${BUILD_NUMBER} ./server
-                docker tage $IMAGE_NAME:${BUILD_NUMBER} $IMAGE_NAME:latest
+                docker tag $IMAGE_NAME:${BUILD_NUMBER} $IMAGE_NAME:latest
                 '''
             }
         }
