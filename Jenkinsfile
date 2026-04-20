@@ -2,12 +2,6 @@ pipeline{
     agent any
     
     stages {
-        stage('Clone'){
-            steps{
-                git 'https://github.com/AnkushUjawane/file-server.git'
-            }
-        }
-
         stage('Install Dependencies'){
             steps{
                 sh 'cd server && npm install'
