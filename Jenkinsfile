@@ -2,8 +2,8 @@ pipeline{
     agent any
 
     environment{
-        IMAGE_NAME = "file-server",
-        CONTAINER_NAME = "file-server",
+        IMAGE_NAME = "file-server"
+        CONTAINER_NAME = "file-server"
         PORT = "5000"
     }
     
