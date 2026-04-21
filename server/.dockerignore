@@ -3,3 +3,5 @@ uploads
 logs
 .env
 npm-debug.log
+.git
+.gitignore
