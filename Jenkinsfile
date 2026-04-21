@@ -30,12 +30,30 @@ pipeline{
                 '''
             }
         }
-        
+
         stage('Run New Container') {
             steps {
                 sh '''
                 docker run -d -p 5000:5000 --name $CONTAINER_NAME $IMAGE_NAME:latest
                 '''
+            }
+        }
+
+        stage("Push to dockerhub"){
+            steps{
+                withCredentials([usernamePassword(
+                    credentialsId: 'dockerhub-creds',
+                    usernameVariable: 'DOCKER_USER',
+                    passwordVariable: 'DOCKER_PASS'
+                )]) 
+                {
+                    sh '''
+                    echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+
+                    docker tag $IMAGE_NAME:latest $DOCKER_USER/$IMAGE_NAME:latest
+                    docker push $DOCKER_USER/$IMAGE_NAME:latest
+                    '''
+                }
             }
         }
     }
