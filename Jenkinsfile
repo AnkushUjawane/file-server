@@ -10,24 +10,31 @@ pipeline{
     stages {
         stage('checkout'){
             steps{
-                checkout scm
+                git branch: 'main', url: 'https://github.com/AnkushUjawane/file-server.git'
             }
         }
 
         stage('Build Docker Image'){
             steps{
                 sh '''
-                docker build --no-cache -t file-server:${BUILD_NUMBER} ./server
+                docker build --network=host --no-cache -t $IMAGE_NAME:$BUILD_NUMBER ./server
                 docker tag $IMAGE_NAME:${BUILD_NUMBER} $IMAGE_NAME:latest
                 '''
             }
         }
 
-        stage('Run container'){
+        stage('stop old container'){
             steps{
                 sh '''
-                docker rm -f $CONTAINER_NAME || true
-                docker run -d -p $PORT:$PORT --name $CONTAINER_NAME $IMAGE_NAME:latest
+                docker rm -f $CONTAINER_NAME || true   
+                '''
+            }
+        }
+        
+        stage('Run New Container') {
+            steps {
+                sh '''
+                docker run -d -p 5000:5000 --name $CONTAINER_NAME $IMAGE_NAME:latest
                 '''
             }
         }
