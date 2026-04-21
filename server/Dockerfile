@@ -1,11 +1,10 @@
-FROM node:18-bullseye
+FROM node:20-bullseye
 
 WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm cache clean --force && \
-    npm install --no-audit --no-fund --legacy-peer-deps
+RUN npm install
 
 COPY . .
 
