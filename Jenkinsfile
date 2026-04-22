@@ -34,7 +34,7 @@ pipeline{
         stage('Run New Container') {
             steps {
                 sh '''
-                docker run -d -p ${PORT}:${PORT} --env-file ./server/.env --name $CONTAINER_NAME $IMAGE_NAME:latest
+                docker run -d -p ${PORT}:${PORT} --env-file ./.env --name $CONTAINER_NAME $IMAGE_NAME:latest
                 '''
             }
         }
