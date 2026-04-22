@@ -5,6 +5,7 @@ pipeline{
         IMAGE_NAME = "file-server"
         CONTAINER_NAME = "file-server"
         PORT = "5000"
+        JWT_SECRET = 'supersecretkey'
     }
     
     stages {
@@ -34,7 +35,7 @@ pipeline{
         stage('Run New Container') {
             steps {
                 sh '''
-                docker run -d -p 5000:5000 --name $CONTAINER_NAME $IMAGE_NAME:latest
+                docker run -d -p ${PORT}:${PORT} -e JWT_SECRET=$JWT_SECRET --name $CONTAINER_NAME $IMAGE_NAME:latest
                 '''
             }
         }
