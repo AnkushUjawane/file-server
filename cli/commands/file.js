@@ -11,7 +11,7 @@ module.exports = (program) => {
         .action(async (filepath) => {
             const spinner = ora("Uploading...").start();
 
-            try{
+            try {
                 const form = new FormData();
                 form.append("file", fs.createReadStream(filepath));
 
@@ -19,9 +19,55 @@ module.exports = (program) => {
                     headers: form.getHeaders(),
                 });
                 spinner.succeed(chalk.green("File Uploaded"));
-            } catch(err){
+            } catch (err) {
                 spinner.fail(chalk.red("Upload Failed"));
             }
         });
+
+    program
+        .command("list")
+        .description("List Files")
+        .action(async () => {
+            try {
+                const res = await api.get("/files");
+                console.log(chalk.blue("Your Files: "));
+                res.data.data.forEach((f) => {
+                    console.log(`ID: ${f.id} | ${f.filename}`);
+                });
+            } catch (err) {
+                console.log(chalk.red("Error Fetching Files"));
+            }
+        });
+
+    program
+        .command("download <id>")
+        .description("Download file")
+        .action(async (id) => {
+            const spinner = ora("Downloading...").start();
+
+            try {
+                const res = await api.get(`/files/${id}/download`, {
+                    responseType: "stream",
+                });
+
+                const file = fs.createWriteStream(`download-${id}`);
+                res.data.pipe(file);
+
+                spinner.succeed(chalk.green("Downloaded"));
+            } catch (err) {
+                spinner.fail(chalk.red("Download failed"));
+            }
+        });
     
+    program
+        .command("delete <id>")
+        .description("Delete File")
+        .action(async (id) => {
+            try{
+                await api.delete(`/files/${id}`);
+                console.log(chalk.green("File Deleted"));
+            } catch{
+                console.log(chalk.red("Delete Failed"));
+            }
+        })
 }
