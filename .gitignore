@@ -5,3 +5,4 @@ uploads/
 server/src/test.txt
 .vscode/
 server/logs/
+cli/config/
