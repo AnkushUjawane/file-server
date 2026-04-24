@@ -30,10 +30,16 @@ module.exports = (program) => {
         .action(async () => {
             try {
                 const res = await api.get("/files");
-                console.log(chalk.blue("Your Files: "));
-                res.data.data.forEach((f) => {
-                    console.log(`ID: ${f.id} | ${f.filename}`);
-                });
+                if (res.data.data.length === 0) {
+                    console.log(chalk.yellow("No files found"));
+                }
+                else {
+                    console.log(chalk.blue("Your Files: "));
+                    res.data.data.forEach((f) => {
+                        console.log(`ID: ${f.id} | ${f.filename}`);
+                    });
+                }
+
             } catch (err) {
                 console.log(chalk.red(err.response?.data?.message || err.message));
             }
@@ -58,15 +64,15 @@ module.exports = (program) => {
                 spinner.fail(chalk.red("Download failed"));
             }
         });
-    
+
     program
         .command("delete <id>")
         .description("Delete File")
         .action(async (id) => {
-            try{
+            try {
                 await api.delete(`/files/${id}`);
                 console.log(chalk.green("File Deleted"));
-            } catch{
+            } catch {
                 console.log(chalk.red("Delete Failed"));
             }
         })
