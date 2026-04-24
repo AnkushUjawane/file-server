@@ -3,6 +3,7 @@ const fs = require("fs");
 const FormData = require("form-data");
 const ora = require("ora");
 const chalk = require("chalk");
+const Table = require("cli-table3");
 
 module.exports = (program) => {
     program
@@ -24,21 +25,30 @@ module.exports = (program) => {
             }
         });
 
+    const table = new Table({
+        head: ["ID", "Name", "Size(kb)", "Created"]
+    });
     program
         .command("list")
         .description("List Files")
         .action(async () => {
+
             try {
                 const res = await api.get("/files");
                 if (res.data.data.length === 0) {
                     console.log(chalk.yellow("No files found"));
+                    return;
                 }
-                else {
-                    console.log(chalk.blue("Your Files: "));
-                    res.data.data.forEach((f) => {
-                        console.log(`ID: ${f.id} | ${f.filename}`);
-                    });
-                }
+                // console.log(chalk.blue("Your Files: "));
+                res.data.data.forEach((f) => {
+                    table.push([
+                        f.id,
+                        f.filename,
+                        (f.size / 1024).toFixed(2),
+                        new Date(f.createdAt).toLocaleString(),
+                    ]);
+                });
+                console.log(table.toString());
 
             } catch (err) {
                 console.log(chalk.red(err.response?.data?.message || err.message));
