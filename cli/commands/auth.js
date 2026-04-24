@@ -23,25 +23,6 @@ module.exports = (program) => {
         });
     
     program
-        .command("signup <username> <password>")
-        .description("Register new user")
-        .action(async (username, password) => {
-            const spinner = ora("Signing up...").start();
-            try{
-                await api.post("/auth/signup", {
-                    username,
-                    password
-                });
-                spinner.succeed(chalk.green("Account Created Successfully"));
-                console.log(chalk.yellow("You can now Login using"));
-                console.log(chalk.underline(`fileserver login ${username} <password>`));
-
-            } catch(err){
-                spinner.fail(chalk.red(err.response?.data?.message || err.message));
-            }
-        })
-    
-    program
         .command("logout")
         .description("Logout from file-server")
         .action(() => {
