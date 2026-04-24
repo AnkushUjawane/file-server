@@ -2,6 +2,7 @@ const api = require("../services/api");
 const {saveToken, clearToken, getToken} = require("../utils/config");
 const ora = require("ora");
 const chalk = require("chalk");
+const jwt = require("jsonwebtoken");
 
 module.exports = (program) => {
     program
@@ -48,4 +49,21 @@ module.exports = (program) => {
             clearToken();
             console.log(chalk.green("Logged out successfully"));    
         });
+    
+    program
+        .command("whoami")
+        .description("Show current user logged-in")
+        .action(() => {
+            const token = getToken();
+
+            if(!token){
+                console.log(chalk.red("Not logged-in"));
+                return;
+            }
+            const decoded = jwt.decode(token);
+            console.log(chalk.green(`logged in as: ${decoded.username}`));
+            console.log(chalk.green(`User ID: ${decoded.id}`));
+            console.log(chalk.green(`Role: ${decoded.role}`));
+
+        })
 }
