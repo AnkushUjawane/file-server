@@ -1,5 +1,5 @@
 const api = require("../services/api");
-const {saveToken} = require("../utils/config");
+const {saveToken, clearToken, getToken} = require("../utils/config");
 const ora = require("ora");
 const chalk = require("chalk");
 
@@ -20,5 +20,13 @@ module.exports = (program) => {
                 spinner.fail(chalk.red(err.response?.data?.message || err.message || "Error"));
                 console.log(err.response?.data);
             }
+        });
+    
+    program
+        .command("logout")
+        .description("Logout from file-server")
+        .action(() => {
+            clearToken();
+            console.log(chalk.green("Logged out successfully"));    
         });
 }

@@ -20,7 +20,7 @@ module.exports = (program) => {
                 });
                 spinner.succeed(chalk.green("File Uploaded"));
             } catch (err) {
-                spinner.fail(chalk.red("Upload Failed"));
+                spinner.fail(chalk.red(err.response?.data?.message || err.message || "Upload Failed "));
             }
         });
 
@@ -35,7 +35,7 @@ module.exports = (program) => {
                     console.log(`ID: ${f.id} | ${f.filename}`);
                 });
             } catch (err) {
-                console.log(chalk.red("Error Fetching Files"));
+                console.log(chalk.red(err.response?.data?.message || err.message));
             }
         });
 
