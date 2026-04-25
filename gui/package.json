@@ -2,9 +2,12 @@
   "name": "gui",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "public/electron.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "react-start": "cd client && npm start",
+    "electron": "electron .",
+    "dev": "concurrently \"npm run react-start\" \"wait-on http://localhost:3000 && npm run electron\""
   },
   "keywords": [],
   "author": "",
