@@ -1,0 +1,15 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  background: #222;
+  color: white;
+}
+
+.navbar button {
+  background: red;
+  color: white;
+  border: none;
+  padding: 2px 2px;
+  cursor: pointer;
+}
