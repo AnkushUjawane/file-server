@@ -1,35 +1,53 @@
 import "./Filecard.css";
 import api from "../../services/api";
-
+import toast from "react-hot-toast";
 
 export default function FileCard({ file, refreshFiles }) {
   const downloadFile = async () => {
-    const res = await api.get(`/files/${file.id}/download`, {
-      responseType: "blob",
-    });
+    try {
+      const res = await api.get(`/files/${file.id}/download`, {
+        responseType: "blob",
+      });
 
-    const url = window.URL.createObjectURL(new Blob([res.data]));
-    const link = document.createElement("a");
-    link.href = url;
-    link.setAttribute("download",file.filename);
-    document.body.appendChild(link);
-    link.click();
+      const url = window.URL.createObjectURL(new Blob([res.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", file.filename);
+      document.body.appendChild(link);
+      link.click();
+
+      toast.success("Download Started");
+    } catch (err) {
+      toast.error("Download Failed");
+    }
   };
 
   const deleteFile = async () => {
-    await api.delete(`/files/${file.id}`);
-    refreshFiles();
+    try {
+      await api.delete(`/files/${file.id}`);
+      toast.success("File Deleted");
+      refreshFiles();
+    } catch (err) {
+      toast.error("Delete Failed");
+    }
   }
 
-  const shareFile = async() => {
-    const res = await api.post(`/files/${file.id}/share`);
-    alert("Share Link: " + res.data.link);
+  const shareFile = async () => {
+    try {
+      const res = await api.post(`/files/${file.id}/share`);
+      navigator.clipboard.writeText(res.data.link);
+      toast.success("Link Copied");
+    } catch (err) {
+      toast.error("Share Failed");
+    }
   }
 
   return (
     <div className="file-card">
-      <p>{file.filename}</p>
-      <small>{(file.size / 1024).toFixed(2)} KB</small>
+      <div className="file-info">
+        <h4>{file.filename}</h4>
+        <p>{(file.size / 1024).toFixed(2)} KB</p>
+      </div>
 
       <div className="actions">
         <button onClick={downloadFile}>Download</button>
