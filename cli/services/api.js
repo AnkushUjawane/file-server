@@ -2,7 +2,7 @@ const axios = require("axios");
 const { getToken } = require("../utils/config");
 
 const api = axios.create({
-    baseURL: "http://localhost:5000/api"
+    baseURL: "https://fileserver-anfjf6gehwetcrcg.southeastasia-01.azurewebsites.net/api"
 });
 
 api.interceptors.request.use((config) => {
