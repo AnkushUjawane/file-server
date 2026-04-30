@@ -8,6 +8,7 @@ app.whenReady().then(() => {
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 800,
+    title: "File Server",
     webPreferences: {
       contextIsolation: true,  
       nodeIntegration: false,  
