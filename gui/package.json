@@ -7,7 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "react-start": "cd client && npm start",
     "electron": "electron .",
-    "dev": "concurrently \"npm run react-start\" \"wait-on http://localhost:3000 && npm run electron\""
+    "dev": "concurrently \"npm run react-start\" \"wait-on http://localhost:3000 && npm run electron\"",
+    "build-react": "cd client && npm run build",
+    "dist": "npm run build-react && electron-builder"
   },
   "keywords": [],
   "author": "",
@@ -15,7 +17,29 @@
   "type": "commonjs",
   "dependencies": {
     "concurrently": "^9.2.1",
-    "electron": "^41.3.0",
     "wait-on": "^9.0.5"
+  },
+  "devDependencies": {
+    "electron": "^41.3.0",
+    "electron-builder": "^26.8.1"
+  },
+  "build": {
+    "appId": "com.fileserver.app",
+    "productName": "FileServer",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "public/**/*",
+      "client/build/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
   }
 }
