@@ -5,3 +5,5 @@ uploads/
 server/src/test.txt
 .vscode/
 server/logs/
+dist/
+build/
