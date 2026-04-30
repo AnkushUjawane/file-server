@@ -1,4 +1,4 @@
-# 🚀 FileServer — Cross-Platform File Management System
+# FileServer — Cross-Platform File Management System
 
 A **production-level file server** with CLI and Desktop GUI, supporting secure file upload, download, sharing, and management across platforms.
 
@@ -6,7 +6,7 @@ Built with a focus on **system design, DevOps, and real-world usability**.
 
 ---
 
-# 📌 Overview
+# Overview
 
 FileServer is a **cross-platform file management system** that allows authenticated users to:
 
@@ -20,53 +20,53 @@ The project demonstrates **full-stack development + DevOps + desktop application
 
 ---
 
-# ✨ Features
+# Features
 
-## 🔐 Authentication
+## Authentication
 
 * User signup & login
 * JWT-based authentication
 * Secure API access
 
-## 📂 File Management
+## File Management
 
 * Upload files (drag & drop supported)
 * Download files
 * Delete files
 * View file list
 
-## 🔗 File Sharing
+## File Sharing
 
 * Generate secure shareable links
 * Public access via token-based URLs
 * Copy-to-clipboard support
 
-## 👁️ File Preview
+## File Preview
 
 * Image preview (JPG, PNG, etc.)
 * PDF preview inside app
 * Modal-based viewer
 
-## 🔍 Search & Filtering
+## Search & Filtering
 
 * Real-time file search
 * Quick access to files
 
-## 💻 CLI Tool
+## CLI Tool
 
 * Login / Signup
 * Upload / Download / Delete
 * Share links
 * Table-based output
 
-## 🖥️ Desktop App
+## Desktop App
 
 * Built with Electron + React
 * Cross-platform (Linux, Windows)
 * Drag & drop UI
 * Modern UX with notifications
 
-## ⚙️ DevOps & Deployment
+## DevOps & Deployment
 
 * Dockerized backend
 * CI/CD using Jenkins
@@ -75,7 +75,7 @@ The project demonstrates **full-stack development + DevOps + desktop application
 
 ---
 
-# 🏗️ Tech Stack
+# Tech Stack
 
 ## 🔹 Backend
 
@@ -103,7 +103,7 @@ The project demonstrates **full-stack development + DevOps + desktop application
 
 ---
 
-# 📁 Project Structure
+# Project Structure
 
 ```
 file-server/
@@ -203,7 +203,7 @@ sudo apt install libfuse2
 
 ---
 
-# ☁️ Deployment
+# Deployment
 
 ## 🔹 Cloud Platform
 
@@ -223,7 +223,7 @@ docker run -d -p 5000:5000 yourusername/file-server
 
 ---
 
-# 🔗 API Base URL
+# API Base URL
 
 ```
 https://your-azure-url/api
@@ -231,7 +231,7 @@ https://your-azure-url/api
 
 ---
 
-# 🧪 Demo Flow
+# Demo Flow
 
 1. Signup / Login
 2. Upload file
@@ -242,19 +242,19 @@ https://your-azure-url/api
 
 ---
 
-# 📸 Screenshots
+# Screenshots
 
 *Add screenshots here*
 
 ---
 
-# 🎥 Demo Video
+# Demo Video
 
 *Add demo video link here*
 
 ---
 
-# 💡 Key Highlights
+# Key Highlights
 
 * Full-stack system (Backend + CLI + GUI)
 * Desktop application using Electron
@@ -265,7 +265,7 @@ https://your-azure-url/api
 
 ---
 
-# 🚀 Future Enhancements
+# Future Enhancements
 
 * File versioning (like Google Drive)
 * End-to-end encryption
@@ -275,13 +275,13 @@ https://your-azure-url/api
 
 ---
 
-# 👨‍💻 Author
+# Author
 
-**Your Name**
+**Ankush Ujawane**
 
 ---
 
-# 📜 License
+# License
 
 This project is licensed under the MIT License.
 
