@@ -5,7 +5,7 @@ import {Toaster} from "react-hot-toast";
 function App() {
   return (
     <AuthProvider>
-      <Toaster position="top-right"/>
+      <Toaster position="bottom-right"/>
       <AppRoutes />
     </AuthProvider>
   );

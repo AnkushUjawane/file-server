@@ -2,7 +2,7 @@ import "./Filecard.css";
 import api from "../../services/api";
 import toast from "react-hot-toast";
 
-export default function FileCard({ file, refreshFiles }) {
+export default function FileCard({ file, refreshFiles, onPreview }) {
   const downloadFile = async () => {
     try {
       const res = await api.get(`/files/${file.id}/download`, {
@@ -50,6 +50,7 @@ export default function FileCard({ file, refreshFiles }) {
       </div>
 
       <div className="actions">
+        <button onClick={() => onPreview(file)}>Preview</button>
         <button onClick={downloadFile}>Download</button>
         <button onClick={deleteFile}>Delete</button>
         <button onClick={shareFile}>Share</button>
