@@ -1,151 +1,292 @@
-# 📂 File Server System
+# 🚀 FileServer — Cross-Platform File Management System
 
-A cross-platform GUI-based file server that allows authenticated users to securely upload, download, and manage files over a network.
+A **production-level file server** with CLI and Desktop GUI, supporting secure file upload, download, sharing, and management across platforms.
 
----
-
-## 🚀 Features
-
-* 🔐 User Authentication (JWT-based)
-* 📤 File Upload
-* 📥 File Download
-* 📄 File Listing
-* 🗑️ Delete Files
-* ✏️ Rename Files
-* 👥 Multi-user Support
-* 🖥️ Cross-platform GUI (Electron + React)
+Built with a focus on **system design, DevOps, and real-world usability**.
 
 ---
 
-## 🏗️ Architecture
+# 📌 Overview
 
-```
-Client (Electron + React)
-        ↓
- REST API (Node.js + Express)
-        ↓
- File System + Database
-```
+FileServer is a **cross-platform file management system** that allows authenticated users to:
 
----
+* Upload, download, and manage files
+* Share files using secure links
+* Preview files (images & PDFs)
+* Use both CLI and Desktop GUI
+* Access from anywhere via cloud deployment
 
-## 📁 Project Structure
-
-```
-file-server/
- ├── server/       # Backend
- ├── client/       # Desktop GUI
- ├── docs/         # Documentation
-```
+The project demonstrates **full-stack development + DevOps + desktop application engineering**.
 
 ---
 
-## ⚙️ Tech Stack
+# ✨ Features
 
-### Backend
+## 🔐 Authentication
+
+* User signup & login
+* JWT-based authentication
+* Secure API access
+
+## 📂 File Management
+
+* Upload files (drag & drop supported)
+* Download files
+* Delete files
+* View file list
+
+## 🔗 File Sharing
+
+* Generate secure shareable links
+* Public access via token-based URLs
+* Copy-to-clipboard support
+
+## 👁️ File Preview
+
+* Image preview (JPG, PNG, etc.)
+* PDF preview inside app
+* Modal-based viewer
+
+## 🔍 Search & Filtering
+
+* Real-time file search
+* Quick access to files
+
+## 💻 CLI Tool
+
+* Login / Signup
+* Upload / Download / Delete
+* Share links
+* Table-based output
+
+## 🖥️ Desktop App
+
+* Built with Electron + React
+* Cross-platform (Linux, Windows)
+* Drag & drop UI
+* Modern UX with notifications
+
+## ⚙️ DevOps & Deployment
+
+* Dockerized backend
+* CI/CD using Jenkins
+* Cloud deployment on Azure
+* DockerHub image hosting
+
+---
+
+# 🏗️ Tech Stack
+
+## 🔹 Backend
 
 * Node.js
 * Express.js
-* Multer (file upload)
-* JWT Authentication
+* Sequelize ORM
+* MySQL / PostgreSQL
 
-### Frontend
+## 🔹 Frontend (GUI)
 
 * React.js
 * Electron
+* Axios
 
-### Storage
+## 🔹 CLI
 
-* Local File System (initial)
-* Cloud (future scope)
+* Node.js
+* Commander.js
+
+## 🔹 DevOps
+
+* Docker
+* Jenkins
+* Microsoft Azure
 
 ---
 
-## 🛠️ Installation
+# 📁 Project Structure
 
-### 1. Clone Repository
+```
+file-server/
+├── server/        # Backend (API)
+├── cli/           # CLI Tool
+├── gui/           # Desktop App (Electron + React)
+├── docker/        # Docker configs
+└── README.md
+```
 
-```bash
-git clone https://github.com/your-username/file-server.git
+---
+
+# ⚙️ Installation & Setup
+
+## 1️⃣ Clone Repository
+
+```
+git clone https://github.com/yourusername/file-server.git
 cd file-server
 ```
 
 ---
 
-### 2. Setup Backend
+## 2️⃣ Backend Setup
 
-```bash
+```
 cd server
 npm install
-```
-
-Create `.env` file:
-
-```
-PORT=5000
-JWT_SECRET=your_secret_key
-```
-
-Run server:
-
-```bash
 npm start
 ```
 
 ---
 
-### 3. Setup Client
+## 3️⃣ Run with Docker
 
-```bash
-cd client
+```
+docker build -t file-server .
+docker run -d -p 5000:5000 file-server
+```
+
+---
+
+## 4️⃣ CLI Setup
+
+```
+cd cli
+npm install
+npm link
+```
+
+Run:
+
+```
+fileserver login <username> <password>
+```
+
+---
+
+## 5️⃣ GUI (Development)
+
+```
+cd gui
 npm install
 npm run dev
 ```
 
 ---
 
-## 🔌 API Endpoints
+## 6️⃣ GUI (Production Build)
 
-### Auth
+```
+npm run dist
+```
 
-* `POST /api/auth/signup`
-* `POST /api/auth/login`
+Output:
 
-### Files
-
-* `POST /api/files/upload`
-* `GET /api/files`
-* `GET /api/files/:id/download`
-* `DELETE /api/files/:id`
-* `PUT /api/files/:id`
+```
+gui/dist/FileServer.AppImage
+gui/dist/FileServer Setup.exe
+```
 
 ---
 
-## 🔐 Security
+# 🐧 Running Desktop App (Linux)
 
-* Password hashing using bcrypt
-* JWT authentication
-* File access control
-* Input validation
+```
+chmod +x FileServer.AppImage
+./FileServer.AppImage
+```
 
----
+⚠️ Note:
+Linux users may need:
 
-## 📌 Future Enhancements
-
-* ☁️ Cloud Storage (AWS S3)
-* 🔄 Resume Uploads
-* 🔒 End-to-End Encryption
-* 📊 Admin Dashboard
-* 📡 Real-time updates (WebSocket)
+```
+sudo apt install libfuse2
+```
 
 ---
 
-## 🤝 Contribution
+# ☁️ Deployment
 
-Pull requests are welcome. Please follow project structure and coding rules.
+## 🔹 Cloud Platform
+
+* Deployed on Microsoft Azure
+
+## 🔹 DockerHub
+
+```
+docker pull yourusername/file-server
+```
+
+## 🔹 Run Anywhere
+
+```
+docker run -d -p 5000:5000 yourusername/file-server
+```
 
 ---
 
-## 📄 License
+# 🔗 API Base URL
 
-MIT License
+```
+https://your-azure-url/api
+```
+
+---
+
+# 🧪 Demo Flow
+
+1. Signup / Login
+2. Upload file
+3. Preview file
+4. Generate share link
+5. Download file
+6. Use desktop app
+
+---
+
+# 📸 Screenshots
+
+*Add screenshots here*
+
+---
+
+# 🎥 Demo Video
+
+*Add demo video link here*
+
+---
+
+# 💡 Key Highlights
+
+* Full-stack system (Backend + CLI + GUI)
+* Desktop application using Electron
+* CI/CD pipeline with Jenkins
+* Containerized using Docker
+* Cloud deployment on Azure
+* Real-world file sharing system
+
+---
+
+# 🚀 Future Enhancements
+
+* File versioning (like Google Drive)
+* End-to-end encryption
+* Multi-user collaboration
+* Storage analytics dashboard
+* AI-based image search
+
+---
+
+# 👨‍💻 Author
+
+**Your Name**
+
+---
+
+# 📜 License
+
+This project is licensed under the MIT License.
+
+---
+
+# ⭐ Show Your Support
+
+If you like this project, give it a ⭐ on GitHub!
