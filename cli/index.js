@@ -11,5 +11,6 @@ program
 
 require("./commands/auth")(program);
 require("./commands/file")(program);
+require("./commands/config")(program);
 
 program.parse(process.argv);
