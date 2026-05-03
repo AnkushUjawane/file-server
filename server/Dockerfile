@@ -6,7 +6,7 @@ COPY package*.json ./
 
 RUN npm install -g npm@9
 
-RUN npm cache clean --force && npm install
+RUN npm install --prefer-offline --no-audit --progress=false
 
 COPY . .
 
