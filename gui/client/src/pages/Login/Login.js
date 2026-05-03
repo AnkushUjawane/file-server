@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
-import api from "../services/api";
-import {AuthContext} from "../context/AuthContext";
+import "./Login.css";
+import api from "../../services/api";
+import {AuthContext} from "../../context/AuthContext";
 
 export default function Login() {
     const {login} = useContext(AuthContext);
