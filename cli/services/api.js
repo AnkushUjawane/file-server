@@ -1,8 +1,8 @@
 const axios = require("axios");
-const { getToken } = require("../utils/config");
+const { getToken, getBaseURL } = require("../utils/config");
 
 const api = axios.create({
-    baseURL: "https://fileserver-anfjf6gehwetcrcg.southeastasia-01.azurewebsites.net/api"
+    baseURL: getBaseURL(),
 });
 
 api.interceptors.request.use((config) => {

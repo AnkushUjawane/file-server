@@ -11,25 +11,49 @@ const ensureConfigDir = () => {
     }
 }
 
+const getConfig = () => {
+  if (!fs.existsSync(configPath)) return {};
+  return JSON.parse(fs.readFileSync(configPath, "utf-8"));
+};
+
+const saveConfig = (data) => {
+  ensureConfigDir();
+  fs.writeFileSync(configPath, JSON.stringify(data, null, 2));
+};
+
+const updateConfig = (newData) => {
+  const existing = getConfig();
+  const updated = { ...existing, ...newData };
+  saveConfig(updated);
+};
+
 const saveToken = (token) => {
-    ensureConfigDir();
-    fs.writeFileSync(configPath, JSON.stringify({ token }));
+    updateConfig({token});
 };
 
 const getToken = () => {
-    if (!fs.existsSync(configPath)) return null;
-
-    const data = JSON.parse(fs.readFileSync(configPath));
-    return data.token;
+    return getConfig().token || null;
 };
 
 const clearToken = () => {
-    if (fs.existsSync(configPath)) {
-        fs.unlinkSync(configPath);
-    }
+    const config = getConfig();
+    delete config.token;
+    saveConfig(config);
+}
+
+const setBaseURL = (url) => {
+    updateConfig({baseURL: url});
+}
+
+const getBaseURL = () => {
+    return getConfig().baseURL || "https://fileserver-anfjf6gehwetcrcg.southeastasia-01.azurewebsites.net/api";
 }
 module.exports = {
     saveToken,
     getToken,
-    clearToken
+    clearToken,
+    setBaseURL,
+    getBaseURL,
+    getConfig,
+    saveConfig
 };

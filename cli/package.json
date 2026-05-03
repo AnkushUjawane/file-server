@@ -1,7 +1,7 @@
 {
-  "name": "cli",
-  "version": "1.0.0",
-  "description": "",
+  "name": "fileserver-cli",
+  "version": "1.0.3",
+  "description": "CLI for File Server",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,9 +16,10 @@
     "cli-table3": "^0.6.5",
     "commander": "^14.0.3",
     "fs-extra": "^11.3.4",
-    "ora": "^5.4.1"
+    "ora": "^5.4.1",
+    "update-notifier": "^7.3.1"
   },
   "bin": {
-    "fileserver": "./index.js"
+    "fileserver": "index.js"
   }
 }
