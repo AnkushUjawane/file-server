@@ -54,5 +54,6 @@ module.exports = {
     clearToken,
     setBaseURL,
     getBaseURL,
-    getConfig
+    getConfig,
+    saveConfig
 };
