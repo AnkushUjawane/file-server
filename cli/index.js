@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 
 const {Command} = require("commander");
+const updateNotifier = require("update-notifier").default;
+const pkg = require("./package.json");
+
+updateNotifier({pkg}).notify();
 
 const program = new Command();
 
