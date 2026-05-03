@@ -1,3 +1,4 @@
+console.log("🔥 NEW DEPLOY VERSION");
 require("dotenv").config();
 const app = require('./src/app');
 
