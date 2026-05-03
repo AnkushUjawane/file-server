@@ -34,8 +34,9 @@ export default function FileCard({ file, refreshFiles, onPreview }) {
 
   const shareFile = async () => {
     try {
-      const res = await api.post(`/files/${file.id}/share`);
-      navigator.clipboard.writeText(res.data.link);
+      const res = await api.post(`/share/${file.id}`);
+      const link = res.data.link;
+      navigator.clipboard.writeText(link);
       toast.success("Link Copied");
     } catch (err) {
       toast.error("Share Failed");
