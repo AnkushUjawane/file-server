@@ -1,4 +1,5 @@
 const fileService = require('../services/file.service');
+const Share = require('../models/Share');
 
 const uploadFile = async (req, res, next) => {
     try {

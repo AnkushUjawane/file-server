@@ -6,6 +6,7 @@ const authMiddleware = require('./middleware/auth.middleware');
 const errorMiddleware = require('./middleware/error.middleware');
 const fileRoutes = require('./routes/file.routes');
 const Limiter = require('./middleware/rateLimit.middleware');
+const shareRoutes = require("./routes/share.routes")
 
 require('./models/user.model');
 
@@ -15,6 +16,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
 app.use("/api/files", fileRoutes);
+app.use("/api/share", shareRoutes);
 app.use(errorMiddleware);
 app.use(Limiter)
 

@@ -46,7 +46,7 @@ const getFiles = async (userId) => {
 };
 
 const getFilebyId = async (id, userId) => {
-    const file = await File.findOne({where: {id, userId}});
+    const file = await File.findByPk(id);
     if(!file){
         throw new Error("File not found");
     }
