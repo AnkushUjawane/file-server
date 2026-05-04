@@ -38,8 +38,15 @@ const login = async (req, res, next) => {
     }
 };
 
-const getMe = async (req, res) => {
+exports.getMe = async (req, res) => {
   try {
+    if (!req.user) {
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorized"
+      });
+    }
+
     const user = await User.findByPk(req.user.id, {
       attributes: ["id", "username", "createdAt"]
     });
@@ -48,7 +55,10 @@ const getMe = async (req, res) => {
       success: true,
       data: user
     });
+
   } catch (err) {
+    console.error("GET ME ERROR:", err); 
+
     res.status(500).json({
       success: false,
       message: "Failed to fetch user"
