@@ -33,6 +33,7 @@
   color: white;
   padding: 10px;
   border-radius: 6px;
+  border: none;
 }
 
 .auth-box p {
