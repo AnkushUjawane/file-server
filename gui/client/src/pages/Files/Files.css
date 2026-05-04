@@ -1,0 +1,8 @@
+.files-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.files-grid {
+  margin-top: 20px;
+}

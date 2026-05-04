@@ -1,11 +1,13 @@
 .file-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px;
-  border-radius: 8px;
-  background: #f5f5f5;
-  margin: 10px 0;
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.file-info {
+  margin-bottom: 10px;
 }
 
 .file-info h4 {
@@ -13,14 +15,19 @@
 }
 
 .actions button {
-  margin-left: 5px;
-  border: none;
-  background: #ddd;
-  padding: 6px 8px;
-  cursor: pointer;
-  border-radius: 4px;
+  margin-right: 8px;
+  background: #2563eb;
+  color: white;
 }
 
-.actions button:hover {
-  background: #bbb;
+.actions button:nth-child(2) {
+  background: #16a34a;
+}
+
+.actions button:nth-child(3) {
+  background: #dc2626;
+}
+
+.actions button:nth-child(4) {
+  background: #9333ea;
 }

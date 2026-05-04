@@ -38,4 +38,22 @@ const login = async (req, res, next) => {
     }
 };
 
-module.exports = {signup, login};
+const getMe = async (req, res) => {
+  try {
+    const user = await User.findByPk(req.user.id, {
+      attributes: ["id", "username", "createdAt"]
+    });
+
+    res.json({
+      success: true,
+      data: user
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch user"
+    });
+  }
+};
+
+module.exports = {signup, login, getMe};

@@ -1,0 +1,38 @@
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background: #111827;
+  color: white;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  margin-bottom: 30px;
+}
+
+.sidebar a {
+  display: block;
+  color: #d1d5db;
+  text-decoration: none;
+  margin-bottom: 15px;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.sidebar a:hover {
+  background: #374151;
+  color: white;
+}
+
+.logout-btn {
+  margin-top: 30px;
+  width: 100%;
+  background: #dc2626;
+  color: white;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.logout-btn:hover {
+  background: #b91c1c;
+}
