@@ -14,8 +14,10 @@ require('./models/user.model');
 
 const app = express();
 
-app.use(cors());
-app.options("*", cors()); 
+app.use(cors({
+    origin: "*",
+    credentials: true
+}));
 
 app.use(express.json());
 
