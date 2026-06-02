@@ -1,4 +1,5 @@
 const authService = require('../services/auth.service');
+const User = require('../models/user.model');
 
 const signup = async (req, res, next) => {
     try{
@@ -38,7 +39,7 @@ const login = async (req, res, next) => {
     }
 };
 
-exports.getMe = async (req, res) => {
+const getMe = async (req, res) => {
   try {
     if (!req.user) {
       return res.status(401).json({

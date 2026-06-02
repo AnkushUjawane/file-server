@@ -45,7 +45,7 @@ const listFiles = async (req, res, next) => {
 
 const downloadFile = async (req, res, next) => {
     try {
-        const file = await fileService.getFilebyId(
+        const file = await fileService.getFileById(
             req.params.id,
             req.user.id
         );
@@ -78,8 +78,8 @@ const renameFile = async (req, res, next) => {
 
         const file = await fileService.renameFile(
             req.params.id,
-            name,
-            req.user.id
+            req.user.id,
+            name
         )
 
         res.json({

@@ -45,16 +45,19 @@ const getFiles = async (userId) => {
     return await File.findAll({where: {userId}});
 };
 
-const getFilebyId = async (id, userId) => {
+const getFileById = async (id, userId) => {
     const file = await File.findByPk(id);
     if(!file){
         throw new Error("File not found");
+    }
+    if (userId && file.userId !== userId) {
+        throw new Error("Unauthorized to access this file");
     }
     return file;
 }
 
 const deleteFile = async (id, userId) => {
-    const file = await getFilebyId(id, userId);
+    const file = await getFileById(id, userId);
 
     fs.unlinkSync(file.path);
     await file.destroy();
@@ -63,13 +66,14 @@ const deleteFile = async (id, userId) => {
 }
 
 const renameFile = async (id, userId, newName) => {
-    const file = await getFilebyId(id, userId);
+    const file = await getFileById(id, userId);
 
-    const newPath = path.join("uploads", newName);
+    const safeName = path.basename(newName);
+    const newPath = path.join(uploadDir, safeName);
 
     fs.renameSync(file.path, newPath);
 
-    file.filename = newName;
+    file.filename = safeName;
     file.path = newPath;
     await file.save();
 
@@ -80,7 +84,7 @@ module.exports = {
     upload,
     saveFile,
     getFiles,
-    getFilebyId,
+    getFileById,
     deleteFile,
     renameFile,
 };

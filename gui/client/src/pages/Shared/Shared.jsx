@@ -20,7 +20,7 @@ export default function Shared() {
   }, []);
 
   const copyLink = (token) => {
-    const link = `${window.location.origin}/api/share/${token}`;
+    const link = `${api.defaults.baseURL}/share/${token}`;
     navigator.clipboard.writeText(link);
     toast.success("Link copied!");
   };
@@ -43,7 +43,7 @@ export default function Shared() {
                 </button>
 
                 <a
-                  href={`/api/share/${s.shareToken}`}
+                  href={`${api.defaults.baseURL}/share/${s.shareToken}`}
                   target="_blank"
                   rel="noreferrer"
                 >
